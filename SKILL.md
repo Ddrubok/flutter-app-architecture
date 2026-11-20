@@ -17,7 +17,10 @@ Start with the first user action that must work end to end. Name its entry point
 
 - Choose who owns navigation decisions and how route arguments/results cross the boundary. Follow the app's existing router; keep `BuildContext` use in the view or routing adapter. Account for back navigation and restoration only where the flow requires them.
 - For each async action, specify pending, success, failure, retry, and disposal behavior. Prevent stale completions or duplicate submissions when they would change the outcome. Add offline reads, queued writes, and conflict policy only if offline use is a product requirement.
+- When a save must finish after its route closes, keep the operation with an owner that outlives the route. Test controlled completion order, including retry success followed by a late failure from the first attempt; keep route effects scoped to a live view. See the [habit save example](README.md#habit-save-after-leaving-the-screen) ([한국어](README.ko.md#화면을-떠난-뒤-도착한-습관-저장-응답)).
 - Show a compact boundary map naming each component, its input/output, source of truth, and lifetime. For a design request, show the first implementation slice. When implementation is requested, connect that flow through the chosen boundaries.
 - For a design, specify the expected observations. When implementing or testing, verify with focused unit tests for data/presentation rules, a widget test for visible states and interaction, and an integration or manual flow check where routing, persistence, or platform behavior matters. Report the observed path and any unverified edge.
 
 Flutter's [architecture guide](https://docs.flutter.dev/app-architecture/guide), [state lifetime guidance](https://docs.flutter.dev/data-and-backend/state-mgmt/ephemeral-vs-app), and [testing overview](https://docs.flutter.dev/testing/overview) provide the baseline; adapt their examples to the app's size and existing conventions.
+
+When invoked directly, read the bundled `VERSION` and report it as the declared version. Without an independent release index, do not claim the files match an official release.
