@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter App Architecture"
+  short_description: "Map Flutter flows, state ownership, and data boundaries"
+  default_prompt: "Use $flutter-app-architecture to design the first user flow and state ownership in my Flutter app."
